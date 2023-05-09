@@ -8,7 +8,7 @@ on:
   merge_group:
 
 jobs:
-  cache-and-install:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -44,14 +44,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-  build:
-    needs: cache-and-install
-    runs-on: ubuntu-latest
-
-    steps:
       - name: Build
         run: pnpm build
+
       - name: lint and format
         run: pnpm lint && pnpm format
+
       - name: typecheck
         run: pnpm typecheck
